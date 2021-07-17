@@ -11,6 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import AndroidIcon from '@material-ui/icons/Android';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import Editor from '@monaco-editor/react';
 
 const DialogWithStyle = withStyles(Theme => ({
   root: {
@@ -27,11 +28,12 @@ const DialogWithStyle = withStyles(Theme => ({
 }))(Dialog);
 const CreateLoadMapDialog = ({ setOpen }) => {
   const [value, setValue] = React.useState('');
-  const [type, setType] = React.useState('JAVA');
+  const [type, setType] = React.useState('java');
+  const [editvalue, setEditValue] = React.useState('//start! coding');
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setOpen(false);
-  };
+  }, []);
 
   const handleChange = useCallback(e => {
     setValue(e.target.value);
@@ -39,6 +41,12 @@ const CreateLoadMapDialog = ({ setOpen }) => {
 
   const handleTypeChange = useCallback(e => {
     setType(e.target.value);
+    setEditValue('');
+    console.log(editvalue);
+  }, []);
+
+  const handleChangeEditor = useCallback(e => {
+    setEditValue(e.target.value);
   }, []);
 
   return (
@@ -74,21 +82,26 @@ const CreateLoadMapDialog = ({ setOpen }) => {
                 value={type}
                 onChange={handleTypeChange}
               >
-                <MenuItem value={'JAVA'}>JAVA</MenuItem>
-                <MenuItem value={'C++'}>C++</MenuItem>
-                <MenuItem value={'SQL'}>SQL</MenuItem>
+                <MenuItem value={'java'}>JAVA</MenuItem>
+                <MenuItem value={'javascript'}>JAVA SCRIPT</MenuItem>
+                <MenuItem value={'c++'}>C++</MenuItem>
+                <MenuItem value={'sql'}>SQL</MenuItem>
+                <MenuItem value={'python'}>python</MenuItem>
               </Select>
             </div>
           </div>
 
+          <Editor
+            style={{
+              marginTop: '20px',
+            }}
+            height="600px"
+            language={type}
+            defaultLanguage="java"
+            value={editvalue}
+            defaultValue="//start coding!"
+          />
           {/* //모나코 에디터 자리  */}
-          <TextField
-            className="title-textfield"
-            id="dialog-name"
-            placeholder="크크크킄큭"
-            // value={value}
-            // onChange={handleChange}
-          ></TextField>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
