@@ -10,9 +10,7 @@ notion 클론 프로젝트
 
 # demo
 ```
-
-![Screencast from 2021년 07월 17일 18시 46분 41초](https://user-images.githubusercontent.com/52990629/126037928-83d1f1cf-c277-489f-a546-c9e7571e8efa.gif)
-
+![demo](https://user-images.githubusercontent.com/52990629/126037991-6e3dba2d-fd02-44f1-b525-6812e60c445a.gif)
 
 ```
 
